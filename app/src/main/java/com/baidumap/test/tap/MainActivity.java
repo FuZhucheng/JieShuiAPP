@@ -1,20 +1,23 @@
 package com.baidumap.test.tap;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidumap.test.tap.widget.XScrollView;
+import com.baidumap.test.tap.widget.dangtianyongshui_activity;
+import com.baidumap.test.tap.widget.lishiyongshui_activity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.data.BarData;
@@ -28,12 +31,19 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity implements XScrollView.IXScrollViewListener{
     private XScrollView mScrollView;
 
     private Handler mHandler;
+
+    private Button btn_lookmore;
+    private View view1, view2, view3;
+    private ViewPager viewPager;
+    private List<View> viewList; //把需要滑动的页卡添加到这个list中
 
     private View content;
     public BarChart barChart;
@@ -42,10 +52,11 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
     public BarDataSet dataset;
     public ArrayList<String> labels = new ArrayList<String>();
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
 
         initView();
         initGridData();
@@ -54,7 +65,72 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
         initListener();
         show();
         initTips();
+
+
+        //加载viewpager并实现adapter
+        viewPager=(ViewPager)findViewById(R.id.viewPager);
+        //加载viewpager布局图片
+        LayoutInflater lf = getLayoutInflater().from(this);
+        view1 = lf.inflate(R.layout.image1, null);
+        view2 = lf.inflate(R.layout.image2, null);
+        view3 = lf.inflate(R.layout.image3, null);
+
+
+        viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
+        viewList.add(view1);
+        viewList.add(view2);
+        viewList.add(view3);
+
+        //查看更多的监听！！
+        btn_lookmore=(Button)findViewById(R.id.btn_lookmore);
+        btn_lookmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, lishiyongshui_activity.class);
+                startActivity(intent);
+            }
+        });
+        //设置viewPager适配器
+        PagerAdapter pagerAdapter = new PagerAdapter() {
+
+            public boolean isViewFromObject(View arg0, Object arg1) {
+
+                return arg0 == arg1;
+
+            }
+
+            public int getCount() {
+
+
+                return viewList.size();
+
+            }
+
+            public void destroyItem(ViewGroup container, int position,
+
+                                    Object object) {
+
+                container.removeView(viewList.get(position));
+
+            }
+
+
+
+            public Object instantiateItem(ViewGroup container, int position) {
+
+                container.addView(viewList.get(position));
+
+                return viewList.get(position);
+
+            }
+
+        };
+        viewPager.setAdapter(pagerAdapter);
+
     }
+
+
 
     protected void initView() {
 
@@ -68,10 +144,12 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
         content= LayoutInflater.from(this).inflate(R.layout.testscrollview,null);
         barChart = (BarChart)content.findViewById(R.id.chart);
         tv_flow= (TextView) content.findViewById(R.id.flow);
-        tv_save= (TextView)content.findViewById(R.id.save);
-        tv_use= (TextView) content.findViewById(R.id.use);
-        tv_pro= (TextView) content.findViewById(R.id.pro);
+        tv_save= (TextView)content.findViewById(R.id.compare);
+        tv_use= (TextView) content.findViewById(R.id.top_use);
+        tv_pro= (TextView) content.findViewById(R.id.support_n);
         mScrollView.setView(content);
+
+
     }
 
     private void initTips() {
@@ -84,7 +162,10 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
         barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                Toast.makeText(MainActivity.this,e.getXIndex()+"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, e.getXIndex() + "", Toast.LENGTH_SHORT).show();
+                Intent intent1=new Intent();
+                intent1.setClass(MainActivity.this,dangtianyongshui_activity.class);
+                startActivity(intent1);
             }
 
             @Override
@@ -92,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
 
             }
         });
+
     }
 
     private void show() {
@@ -174,3 +256,4 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
         return true;
     }
 }
+

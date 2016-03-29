@@ -12,4 +12,5 @@
     <string name="header_hint_refresh_time">Time：</string>
     <string name="footer_hint_load_normal">Load more</string>
     <string name="footer_hint_load_ready">Release to load more</string>
+    <string name="title_activity_lishiyongshui_activity">lishiyongshui_activity</string>
 </resources>

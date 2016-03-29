@@ -3,153 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="1dp"
-        android:background="#3F51B5"/>
-    <LinearLayout
+        android:layout_height="35dp"
+        android:text="节水APP"
+        android:textAlignment="center"
+        android:textSize="26dp"
+        />
+    <TextView
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="50dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:orientation="vertical">
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+        android:layout_height="1dp"
+        android:background="#3F51B5"
+        />
 
-                android:text="用水量（L）"/>
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/flow"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:text="10"/>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#3F51B5"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:orientation="vertical">
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="节水量（L）"/>
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:id="@+id/save"
-                android:text="10"/>
-        </LinearLayout>
-
-    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#3F51B5"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:orientation="vertical">
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="用电量（kw.h）"/>
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/use"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:text="10"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#3F51B5"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:orientation="vertical">
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="发电量（kw.h）"/>
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:id="@+id/pro"
-                android:text="10"/>
-        </LinearLayout>
-
-    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="140dp" />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#3F51B5"/>
+        android:layout_height="20dp"
+        android:background="#FFFFFF"/>
     <com.github.mikephil.charting.charts.BarChart
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_height="300dp"
+        android:layout_height="240dp"
         android:id="@+id/chart">
-
     </com.github.mikephil.charting.charts.BarChart>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#3F51B5"/>
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="#3F51B5"
-        android:textSize="30dp"
-        android:text="Tips"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#3F51B5"
-        android:textSize="20dp"
-        android:text="Tips_content"/>
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:text="累加发电量"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/tv_dianliang"
+            android:layout_weight="2"
+            />
+        <Button
+            android:id="@+id/btn_lookmore"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:text="查看更多"
+            android:textAlignment="center"
+            android:textSize="20sp"/>
+    </LinearLayout>
 </LinearLayout>
