@@ -19,7 +19,8 @@
             android:name=".widget.lishiyongshui_activity"
             android:label="@string/title_activity_lishiyongshui_activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".widget.dangtianyongshui_activity"></activity>
+        <activity android:name=".widget.dangtianyongshui_activity" />
+        <activity android:name=".widget.TIPS"></activity>
     </application>
 
 </manifest>
