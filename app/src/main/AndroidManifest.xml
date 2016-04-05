@@ -2,25 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.baidumap.test.tap">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".widget.lishiyongshui_activity"
-            android:label="@string/title_activity_lishiyongshui_activity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".widget.dangtianyongshui_activity" />
-        <activity android:name=".widget.TIPS"></activity>
+        <activity android:name=".dangtianyongshui_activity" />
+        <activity android:name=".TIPS" />
+        <activity android:name=".esptouch.demo_activity.EsptouchDemoActivity" />
+        <activity android:name=".History" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

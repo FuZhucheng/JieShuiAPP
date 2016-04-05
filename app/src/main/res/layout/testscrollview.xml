@@ -7,23 +7,7 @@
     android:paddingRight="0dp"
 
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:text="节水APP"
-        android:textAlignment="center"
-        android:textSize="26dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#3F51B5"
-        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#3F51B5"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="fill_parent"
@@ -40,34 +24,67 @@
         android:layout_height="240dp"
         android:id="@+id/chart">
     </com.github.mikephil.charting.charts.BarChart>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#3F51B5"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-        <TextView
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="2"
-            android:text="累加发电量"
-            android:textSize="20sp"
-            />
-        <TextView
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/iv_drop"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="累计用水量（L）"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/totaluse"
+                android:text="10"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/tv_dianliang"
-            android:layout_weight="2"
-            />
-        <Button
-            android:id="@+id/btn_lookmore"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="2"
-            android:text="查看更多"
-            android:textAlignment="center"
-            android:textSize="20sp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/iv_ele"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="累计发电量（J）"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/totalpro"
+                android:text="10"/>
+        </LinearLayout>
     </LinearLayout>
+    <Button
+        android:id="@+id/btn_lookmore"
+        android:layout_marginLeft="240dp"
+        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"
+        android:background="@drawable/shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="历史用水"
+
+        android:textSize="20sp"/>
+
 </LinearLayout>
