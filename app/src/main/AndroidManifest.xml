@@ -21,10 +21,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".dangtianyongshui_activity" />
-        <activity android:name=".TIPS" />
+        <activity android:name=".TIPS"  android:theme="@style/MyTheme" />
         <activity android:name=".esptouch.demo_activity.EsptouchDemoActivity" />
         <activity android:name=".History" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".feedback"></activity>
     </application>
 
 </manifest>

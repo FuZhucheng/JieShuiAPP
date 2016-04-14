@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        setTitle("节水");
+        setTitle("Spicy Water");
 
         initView();
         initSharedPreferences();
@@ -126,18 +125,18 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
 
     }
 
-    private void initBarData() {
-        int index=0;
+    private void initBarData() {            //取数据库的值（然后有转换添加到集合中去的代码）
+        int index=0;                                                //索引值
         entries=new ArrayList<BarEntry>();
         labels=new ArrayList<String>();
-        maxid=sharedPreferences.getInt("maxid",0)-7+"";
-        listshow=db.findAllByWhere(DayData.class,"id>"+maxid);
-        for (DayData daydata:listshow){
-            double sum=daydata.getSum();
-            entries.add(new BarEntry((float) sum,index));
-            index++;
+        maxid=sharedPreferences.getInt("maxid",0)-7+"";                         //设定一个标准
+        listshow=db.findAllByWhere(DayData.class,"id>"+maxid);          //按条件查出
+        for (DayData daydata:listshow){                                               //遍历
+            double sum=daydata.getSum();                                            //得到值
+            entries.add(new BarEntry((float) sum,index));              //这里是添加进去那个list     //  BarEntry是一个实体类
+            index++;                                                                             //索引的 自增
             Date date=daydata.getDate();
-            SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+            SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );     //时间转换
             String datestr=sdf.format(date);
             datestr=datestr.substring(5,10);
             labels.add(datestr);
@@ -157,19 +156,19 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
         barChart.setDescription("最近一周用水情况");
     }
 
-    private void initDB() {
+    private void initDB() {             //初始化数据库
         db=FinalDb.create(this,"tap.db");
         String muid=uid+"";
-        List<Sum> Sumlist=db.findAll(Sum.class,"uid="+muid);
+        List<Sum> Sumlist=db.findAll(Sum.class,"uid="+muid);            //调用数据库查找到sum，并且放进链表里面
         if (Sumlist.size()>0){
-            tv_totaluse.setText(Sumlist.get(0).getTotaluse()+"");
+            tv_totaluse.setText(Sumlist.get(0).getTotaluse()+"");      //累积用水量
         }else {
             tv_totaluse.setText("0");
         }
 
     }
 
-    private void initSharedPreferences() {
+    private void initSharedPreferences() {              //使用了sharedpreferences存储数据
         sharedPreferences=getSharedPreferences("sp",MODE_PRIVATE);
         editor=sharedPreferences.edit();
         time=sharedPreferences.getLong("time",0);
@@ -179,12 +178,12 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
     }
 
 
-    protected void initView() {
+    protected void initView() {         //初始化界面布局这类
         recHandler=new Handler(){
             @Override
             public void handleMessage(final Message msg) {
                 super.handleMessage(msg);
-                switch (msg.what){
+                    switch (msg.what){
                     case LATEST_TIME:
                         if (msg.obj!=null){
                             Log.e("receive",(Long)msg.obj+"");
@@ -278,9 +277,9 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
         img_1=(ImageView) view1.findViewById(R.id.img_1);
         img_2=(ImageView) view2.findViewById(R.id.img_2);
         img_3=(ImageView) view3.findViewById(R.id.img_3);
-        Glide.with(this).load(R.drawable.image1).into(img_1);
-        Glide.with(this).load(R.drawable.image2).into(img_2);
-        Glide.with(this).load(R.drawable.image3).into(img_3);
+        Glide.with(this).load(R.drawable.image_morning).into(img_1);
+        Glide.with(this).load(R.drawable.image_noon).into(img_2);
+        Glide.with(this).load(R.drawable.image8).into(img_3);
         viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
         viewList.add(view1);
         viewList.add(view2);
@@ -356,6 +355,7 @@ public class MainActivity extends AppCompatActivity implements XScrollView.IXScr
 //    private void show() {
 //        barChart.setDoubleTapToZoomEnabled(false);
 //        barChart.setDrawHighlightArrow(false);
+
 //        dataset = new BarDataSet(entries, "");
 ////        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
 //        //color可自定格式例如 Color.rgb(217, 80, 138), Color.rgb(254, 149, 7), Color.rgb(254, 247, 120),

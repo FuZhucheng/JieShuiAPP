@@ -15,7 +15,7 @@ public class DayData implements Serializable{
 
     public double getDec() {
         return dec;
-    }
+    }       //比前一天减少
 
     public void setDec(double dec) {
         this.dec = dec;

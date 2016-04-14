@@ -20,4 +20,5 @@
     <string name="switchIsSsidHiddenTitle">SSID is Hidden</string>
     <string name="spinnerTaskResultCountTitle">Task result count</string>
     <string name="btnConfirmTitle">提交</string>
+    <string name="title_activity_feedback">feedback</string>
 </resources>
